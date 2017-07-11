@@ -28,6 +28,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/listview_building" />
 
+
     <ListView
         android:id="@+id/listview_building"
         android:layout_width="match_parent"
@@ -36,7 +37,9 @@
         android:layout_marginRight="10dp"
         android:divider="#d1d1d1"
         android:dividerHeight="10dp"
-        android:layout_below="@+id/searchView"></ListView>
+        android:layout_below="@+id/searchView">
+
+    </ListView>
 
     <ListView
         android:id="@+id/listview_userbuilding"
@@ -47,6 +50,8 @@
         android:layout_marginRight="10dp"
         android:divider="#d1d1d1"
         android:dividerHeight="10dp"
-        android:visibility="gone"></ListView>
+        android:visibility="gone">
+
+    </ListView>
 
 </RelativeLayout>
