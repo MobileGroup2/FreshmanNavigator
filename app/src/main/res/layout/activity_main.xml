@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="francefrancerevolution.gonolesdatabase.MainActivity"
+    android:baselineAligned="false">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_alignParentLeft="true"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/listview_building"
+        android:layout_toStartOf="@+id/SAVEDLIST" />
+
+
+    <Button
+        android:id="@+id/SAVEDLIST"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_alignParentRight="true"
+        android:text="Saved"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/listview_building" />
+
+    <ListView
+        android:id="@+id/listview_building"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="#d1d1d1"
+        android:dividerHeight="10dp"
+        android:layout_below="@+id/searchView"></ListView>
+
+    <ListView
+        android:id="@+id/listview_userbuilding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="#d1d1d1"
+        android:dividerHeight="10dp"
+        android:visibility="gone"></ListView>
+
+</RelativeLayout>
