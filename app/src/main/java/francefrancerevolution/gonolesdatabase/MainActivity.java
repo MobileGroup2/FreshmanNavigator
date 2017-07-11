@@ -4,12 +4,10 @@ package francefrancerevolution.gonolesdatabase;
  * Created by Alucard5 on 4/4/2017.
  */
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,10 +31,8 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    private ListView lvBuilding;
-    private ListView lvBuilding2;
-    ArrayAdapter<Building> adapter;
-    ArrayAdapter<Building> adapter2;
+    private ListView lvBuilding, lvBuilding2;
+    ArrayAdapter<Building> adapter, adapter2;
     private ArrayList<Building> bBuildingList;
     private ArrayList<Building> userBuildingList= new ArrayList<>();
     private DatabaseHelper bDBHelper;
