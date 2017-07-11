@@ -196,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
             }
             outputStream.flush();
             outputStream.close();
-            Log.w("MainActivity","DB copied");
             return true;
         }catch (Exception e) {
             e.printStackTrace();
