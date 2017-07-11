@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import francefrancerevolution.gonolesdatabase.MainActivity;
+import francefrancerevolution.gonolesdatabase.MapsActivity;
 import francefrancerevolution.gonolesdatabase.R;
 
 public class HomeScreen extends AppCompatActivity {
@@ -22,25 +23,26 @@ public class HomeScreen extends AppCompatActivity {
         //View v = getWindow().getDecorView().getRootView();
         //v.getBackground().setAlpha(10);
 
-        Button maps = (Button) findViewById(R.id.map);
-        Button schedule = (Button) findViewById(R.id.schedule);
-        Button buildings = (Button) findViewById(R.id.buildings);
 
+        //These buttons not needed because of xml onClick - Alex C ()?
 
-
-
+      //  Button maps = (Button) findViewById(R.id.map);
+        //Button schedule = (Button) findViewById(R.id.schedule);
+        //Button buildings = (Button) findViewById(R.id.buildings);
 
     }
 
 
     public void mapsClick(View v)
     {
-
+        Intent intent = new Intent(HomeScreen.this, MapsActivity.class);
+        startActivity(intent);
     }
 
     public void scheduleClick(View v)
     {
-
+       // Intent intent = new Intent(HomeScreen.this, MainActivity.class);
+       // startActivity(intent);
     }
 
     public void buildingClick(View v)
