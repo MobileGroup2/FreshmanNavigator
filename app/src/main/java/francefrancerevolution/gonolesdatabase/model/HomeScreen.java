@@ -1,5 +1,6 @@
 
 //ANJALI DID THIS
+//alex made it better lol
 package francefrancerevolution.gonolesdatabase.model;
 
 import android.content.Intent;
