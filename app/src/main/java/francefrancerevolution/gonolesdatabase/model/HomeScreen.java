@@ -27,7 +27,7 @@ public class HomeScreen extends AppCompatActivity {
         //These buttons not needed because of xml onClick - Alex C ()?
 
       //  Button maps = (Button) findViewById(R.id.map);
-        //Button schedule = (Button) findViewById(R.id.schedule);
+        //Button add_class = (Button) findViewById(R.id.add_class);
         //Button buildings = (Button) findViewById(R.id.buildings);
 
     }

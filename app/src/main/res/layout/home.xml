@@ -8,29 +8,39 @@
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:elevation="10dp"
+        android:onClick="mapsClick"
+        android:text="map"
+        android:typeface="monospace"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:text="map"
-        android:onClick="mapsClick"/>
+        android:textSize="20dp"/>
 
     <Button
         android:id="@+id/schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/map"
-        android:layout_below="@+id/map"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="62dp"
+        android:elevation="10dp"
+        android:onClick="scheduleClick"
         android:text="schedule"
-        android:onClick="scheduleClick"/>
+        android:typeface="monospace"
+        android:textSize="20dp"
+        android:layout_below="@+id/map"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/buildings"
-        android:onClick="buildingClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/schedule"
         android:layout_below="@+id/schedule"
-        android:layout_marginTop="79dp"
-        android:text="buildings" />
+        android:layout_marginTop="64dp"
+        android:elevation="10dp"
+        android:onClick="buildingClick"
+        android:text="buildings"
+        android:typeface="monospace"
+        android:textSize="20dp"/>
+
 </RelativeLayout>
