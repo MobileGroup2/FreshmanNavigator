@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(fsu , 15.0f) );
 
        // userBuildingList = bDBHelper.getListBuilding2();
-
+/*
         if (userBuildingList.size()>0)
         {
             for (int i = 0; i<userBuildingList.size();i++)
@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // mMap.addMarker();
             }
         }
-
+*/
 
        // mMap.addMarker(new MarkerOptions().position(fsu).title("FSU"));
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(fsu));
