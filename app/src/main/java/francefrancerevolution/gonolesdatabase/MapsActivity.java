@@ -25,6 +25,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
+import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
+import francefrancerevolution.gonolesdatabase.model.Building;
 import francefrancerevolution.gonolesdatabase.model.HomeScreen;
 
 import static android.R.attr.enabled;
@@ -32,6 +36,8 @@ import static android.R.attr.enabled;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private DatabaseHelper bDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +56,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             showDialogGPS();
         }
 
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        ArrayList<Building> userBuildingList= new ArrayList<>();
 
         //Check GPS Permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -70,6 +76,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng fsu = new LatLng(30.441668, -84.298517);
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(fsu , 15.0f) );
 
+       // userBuildingList = bDBHelper.getListBuilding2();
+
+        if (userBuildingList.size()>0)
+        {
+            for (int i = 0; i<userBuildingList.size();i++)
+            {
+                // mMap.addMarker();
+            }
+        }
 
 
        // mMap.addMarker(new MarkerOptions().position(fsu).title("FSU"));
