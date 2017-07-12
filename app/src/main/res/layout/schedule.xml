@@ -1,68 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:text="MY SCHEDULE"
+        android:textSize="25sp"
+        android:typeface="monospace"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="42dp"
-        android:text="Class Name: " />
+        android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/editText"
+    <Button
+        android:id="@+id/button_add_classes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="24dp"
-        android:layout_toEndOf="@+id/textView"
-        android:ems="10"
-        android:hint="e.g. COP3330"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="33dp"
-        android:layout_toStartOf="@+id/editText"
-        android:text="Building: " />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:hint="e.g. LOV"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time: "
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignEnd="@+id/textView2" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:hint="e.g. 930AM-1045AM"
-        android:inputType="textPersonName" />
-
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:text="ADD CLASSES"
+        android:typeface="monospace"/>
 </RelativeLayout>
