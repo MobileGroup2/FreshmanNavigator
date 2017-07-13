@@ -53,6 +53,12 @@
 
         </activity>
 
+        <activity
+            android:name=".Schedule"
+            android:label="schedg">
+
+        </activity>
+
         <provider
             android:name=".model.UserContentProvider"
             android:authorities="francefrancerevolution.gonolesdatabase.provider"
