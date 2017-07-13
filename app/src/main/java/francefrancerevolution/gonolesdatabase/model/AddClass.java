@@ -1,7 +1,12 @@
 package francefrancerevolution.gonolesdatabase.model;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import francefrancerevolution.gonolesdatabase.R;
 
@@ -16,7 +21,17 @@ public class AddClass extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_class);
+        EditText building = (EditText) findViewById(R.id.editText2);
+        building.setShowSoftInputOnFocus(false);
+      //  InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        //imm.hideSoftInputFromWindow(building.getWindowToken(), 0);
 
+        building.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"clicked on meee",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
