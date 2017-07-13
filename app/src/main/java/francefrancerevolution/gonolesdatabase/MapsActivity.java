@@ -35,7 +35,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Building building_details;
-    //private DatabaseHelper bDBHelper;
+    private DatabaseHelper bDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
