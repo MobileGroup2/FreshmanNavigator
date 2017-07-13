@@ -18,6 +18,7 @@ public class AddClass extends AppCompatActivity
         setContentView(R.layout.add_class);
 
 
+
     }
 
 }
