@@ -86,4 +86,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public Building getBuildingbyName(String name) {
+        Building building = null;
+        openDatabase();
+        String [] paramters = new String [] {name};
+        Cursor cursor = bDatabase.rawQuery("SELECT * FROM BUILDING WHERE NAME =?",paramters );
+        cursor.moveToFirst();
+
+        building = new Building(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),cursor.getString(5), cursor.getString(6));
+
+        cursor.close();
+        closeDatabase();
+        return building;
+    }
+
+
 }
