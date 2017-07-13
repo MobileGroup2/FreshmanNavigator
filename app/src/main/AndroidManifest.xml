@@ -59,12 +59,6 @@
 
         </activity>
 
-        <activity
-            android:name=".model.AddClass"
-            android:label="Go Noles">
-
-        </activity>
-
         <provider
             android:name=".model.UserContentProvider"
             android:authorities="francefrancerevolution.gonolesdatabase.provider"
