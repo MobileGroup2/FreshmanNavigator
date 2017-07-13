@@ -55,7 +55,13 @@
 
         <activity
             android:name=".Schedule"
-            android:label="schedg">
+            android:label="Go Noles">
+
+        </activity>
+
+        <activity
+            android:name=".model.AddClass"
+            android:label="Go Noles">
 
         </activity>
 
