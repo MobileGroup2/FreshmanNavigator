@@ -24,7 +24,7 @@ public class UserContentProvider extends ContentProvider {
     public final static String TIME = "Time";
     public final static String PKEY = "_ID";
 
-    //need to add all the employee info
+    //user data to be stored in the class name building and time of class
     private static final String SQL_CREATE_MAIN = "CREATE TABLE UserDataTable ( " +
                                                     "_ID INTEGER PRIMARY KEY, " +
                                                     "Name TEXT, " +
@@ -62,7 +62,6 @@ public class UserContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        // TODO: query Employee by selection
         return mOpenHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
     }
     @Override

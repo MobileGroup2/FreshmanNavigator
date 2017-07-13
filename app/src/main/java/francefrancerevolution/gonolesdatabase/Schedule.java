@@ -11,7 +11,7 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule);
-        addClasses = (Button)findViewById(R.id.button_add_classes);
+        //addClasses = (Button)findViewById(R.id.button_add_classes);
 
     }
 

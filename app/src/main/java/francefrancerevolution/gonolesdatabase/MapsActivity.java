@@ -12,7 +12,6 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,13 +22,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
 import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
 import francefrancerevolution.gonolesdatabase.model.Building;
-import francefrancerevolution.gonolesdatabase.model.HomeScreen;
 
 import static android.R.attr.enabled;
 

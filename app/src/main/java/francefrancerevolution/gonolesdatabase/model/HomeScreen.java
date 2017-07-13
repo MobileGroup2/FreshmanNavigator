@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import francefrancerevolution.gonolesdatabase.MainActivity;
 import francefrancerevolution.gonolesdatabase.MapsActivity;
 import francefrancerevolution.gonolesdatabase.R;
+import francefrancerevolution.gonolesdatabase.Schedule;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -29,8 +28,19 @@ public class HomeScreen extends AppCompatActivity {
       //  Button maps = (Button) findViewById(R.id.map);
         //Button add_class = (Button) findViewById(R.id.add_class);
         //Button buildings = (Button) findViewById(R.id.buildings);
-
+//        Button schedule = (Button)findViewById(R.id.schedule);
+//        schedule.setOnClickListener(mScheduleListener);
     }
+
+
+//    private View.OnClickListener mScheduleListener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(HomeScreen.this, Schedule.class);
+//            startActivity(intent);
+//
+//        }
+//    };
 
 
     public void mapsClick(View v)
@@ -39,10 +49,13 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void scheduleClick(View v)
     {
-       // Intent intent = new Intent(HomeScreen.this, MainActivity.class);
-       // startActivity(intent);
+        //SCHEDULE.JAVA HAS ERRORS OR NEEDS DIFF PACKAGES INCLUDE
+        //OR MAYBE
+        Intent intent = new Intent(HomeScreen.this, Schedule.class);
+        startActivity(intent);
     }
 
     public void buildingClick(View v)
