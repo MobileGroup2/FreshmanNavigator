@@ -54,8 +54,12 @@
         </activity>
 
         <activity
+            android:name=".model.AddClass"
+            android:label="add_class"></activity>
+
+        <activity
             android:name=".Schedule"
-            android:label="Go Noles">
+            android:label="schedule">
 
         </activity>
 
