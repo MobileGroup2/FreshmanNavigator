@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
@@ -111,11 +112,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Uri gmmIntentUri = Uri.parse("google.navigation:q="+userBuildingList.get(position).getBuilding_Lat()+", "+userBuildingList.get(position).getBuilding_Lng()+"&mode=walking");
+                /*Uri gmmIntentUri = Uri.parse("google.navigation:q="+userBuildingList.get(position).getBuilding_Lat()+", "+userBuildingList.get(position).getBuilding_Lng()+"&mode=walking");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
-
+                */
+                String[] thisbuildinginfo = ((TextView) view).getText().toString().split("\n");
+                //Building thisbuilding = bDBHelper.getBuildingbyName(thisbuildinginfo[0]);
+                //Toast.makeText(getApplicationContext(), thisbuilding.getBuilding_name(), Toast.LENGTH_SHORT).show();
+                Intent mapIntent = new Intent(MainActivity.this, MapsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("BldName", thisbuildinginfo[0]);
+                mapIntent.putExtras(bundle);
+                startActivity(mapIntent);
 
                 //Toast.makeText(getBaseContext(), bBuildingList.get(position).getSaved(),Toast.LENGTH_SHORT).show();
             }

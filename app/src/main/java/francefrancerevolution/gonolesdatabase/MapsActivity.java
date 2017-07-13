@@ -22,6 +22,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ import static android.R.attr.enabled;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    private Building building_details;
     private DatabaseHelper bDBHelper;
 
     @Override
@@ -51,6 +52,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if(!enabled) {
             showDialogGPS();
+        }
+
+        bDBHelper = new DatabaseHelper(this);
+
+        if(getIntent()!= null && getIntent().getExtras() != null) {
+            Intent args = getIntent();
+            Bundle bundle = args.getExtras();
+            String name = bundle.getString("BldName");
+            building_details = bDBHelper.getBuildingbyName(name);
+            Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -72,6 +83,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng fsu = new LatLng(30.441668, -84.298517);
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(fsu , 15.0f) );
+
+        //TODO: Add marker for buildings
+        LatLng toGo = new LatLng(Double.parseDouble(building_details.getBuilding_Lat()),
+                Double.parseDouble(building_details.getBuilding_Lng()));
+        mMap.addMarker(new MarkerOptions().position(toGo).title(building_details.getBuilding_name()));
 
        // userBuildingList = bDBHelper.getListBuilding2();
 /*
