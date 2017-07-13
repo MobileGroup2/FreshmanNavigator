@@ -85,9 +85,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(fsu , 15.0f) );
 
         //TODO: Add marker for buildings
+    if (building_details!=null) {
         LatLng toGo = new LatLng(Double.parseDouble(building_details.getBuilding_Lat()),
-                Double.parseDouble(building_details.getBuilding_Lng()));
+            Double.parseDouble(building_details.getBuilding_Lng()));
         mMap.addMarker(new MarkerOptions().position(toGo).title(building_details.getBuilding_name()));
+    }
 
        // userBuildingList = bDBHelper.getListBuilding2();
 /*
