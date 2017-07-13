@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="29dp"
         android:layout_marginTop="42dp"
+        android:typeface="monospace"
         android:text="Class Name: " />
 
     <EditText
@@ -22,6 +23,7 @@
         android:layout_marginTop="24dp"
         android:layout_toEndOf="@+id/textView"
         android:ems="10"
+        android:typeface="monospace"
         android:hint="e.g. COP3330"
         android:inputType="textPersonName" />
 
@@ -31,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText"
         android:layout_marginTop="33dp"
+        android:typeface="monospace"
         android:layout_toStartOf="@+id/editText"
         android:text="Building: " />
 
@@ -42,6 +45,7 @@
         android:layout_below="@+id/editText"
         android:layout_marginTop="14dp"
         android:ems="10"
+        android:typeface="monospace"
         android:hint="e.g. LOV"
         android:inputType="textPersonName" />
 
@@ -50,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time: "
+        android:typeface="monospace"
         android:layout_alignBaseline="@+id/editText3"
         android:layout_alignBottom="@+id/editText3"
         android:layout_alignEnd="@+id/textView2" />
@@ -62,7 +67,17 @@
         android:layout_below="@+id/editText2"
         android:layout_marginTop="25dp"
         android:ems="10"
+        android:typeface="monospace"
         android:hint="e.g. 930AM-1045AM"
         android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:typeface="monospace"
+        android:text="ADD" />
 
 </RelativeLayout>
