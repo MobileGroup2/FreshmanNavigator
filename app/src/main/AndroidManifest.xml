@@ -64,7 +64,7 @@
         </activity>
 
         <provider
-            android:name=".model.UserContentProvider"
+            android:name=".UserContentProvider"
             android:authorities="francefrancerevolution.gonolesdatabase.provider"
             android:exported="true"
             android:readPermission="true"

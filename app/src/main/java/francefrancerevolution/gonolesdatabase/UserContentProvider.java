@@ -1,4 +1,4 @@
-package francefrancerevolution.gonolesdatabase.model;
+package francefrancerevolution.gonolesdatabase;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -17,7 +17,7 @@ public class UserContentProvider extends ContentProvider {
     public final static String DBNAME = "USERDATABASE";
     public static final String TABLE_NAME = "UserDataTable";
     public MainDatabaseHelper mOpenHelper;
-    public static final Uri CONTENT_URI = Uri.parse("content://francefrancerevolution.gonolesdatabase.model.provider");
+    public static final Uri CONTENT_URI = Uri.parse("content://francefrancerevolution.gonolesdatabase.provider");
 
     public final static String NAME = "Name";
     public final static String BUILDING = "Building";
