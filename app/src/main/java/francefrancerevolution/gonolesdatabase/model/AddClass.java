@@ -46,11 +46,6 @@ public class AddClass extends AppCompatActivity
         add.setOnClickListener(mAddListner);
 
 
-
-
-
-
-
     }
 
 
@@ -71,6 +66,7 @@ public class AddClass extends AppCompatActivity
             Uri uri = getContentResolver().insert(UserContentProvider.CONTENT_URI, values);
             Log.i(uri.toString(), values.toString());
             Intent intent = new Intent(AddClass.this, Schedule.class);
+            intent.putExtra("URI", uri.toString());
             startActivity(intent);
         }
     };

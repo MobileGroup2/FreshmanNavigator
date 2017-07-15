@@ -1,7 +1,9 @@
 package francefrancerevolution.gonolesdatabase;
 
+import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,12 +31,18 @@ public class Schedule extends AppCompatActivity {
         addClasses = (Button)findViewById(R.id.button_add_classes);
         schedule = (TextView)findViewById(R.id.text_schedule);
 
-        String selectionClause = "_ID = ?";
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("URI");
+        //Uri uri = Uri.parse(str);
+        //Long row = ContentUris.parseId(uri);
 
-        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, null, null, null);
+        String selectionClause = "_ID = ?";
+        String selectionArgs[] = {Long.toString(5)};
+        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs, null, null);
 
         if(cursor != null){
             while(cursor.moveToNext()){
+                Log.i("\n\n", "\n");
                 Log.i(cursor.getString(0), cursor.getString(1));
                 Log.i(cursor.getString(2), "");
                 schedule.setText(cursor.getString(0));
@@ -42,6 +50,7 @@ public class Schedule extends AppCompatActivity {
         }
 
     }
+
 
 
 
