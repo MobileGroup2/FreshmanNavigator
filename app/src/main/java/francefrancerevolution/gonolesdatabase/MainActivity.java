@@ -32,10 +32,10 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    private ListView lvBuilding, lvBuilding2;
+    private ListView lvBuilding, lvBuildingSaved;
     ArrayAdapter<Building> adapter, adapter2;
     private ArrayList<Building> bBuildingList;
-    private ArrayList<Building> userBuildingList= new ArrayList<>();
+    private ArrayList<Building> savedBuildingList= new ArrayList<>();
     private DatabaseHelper bDBHelper;
     SearchView sv;
     @Override
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         lvBuilding = (ListView)findViewById(R.id.listview_building);
-        lvBuilding2 = (ListView)findViewById(R.id.listview_userbuilding);
+        lvBuildingSaved = (ListView)findViewById(R.id.listview_userbuilding);
         sv = (SearchView) findViewById(R.id.searchView);
 
         bDBHelper = new DatabaseHelper(this);
@@ -64,89 +64,44 @@ public class MainActivity extends AppCompatActivity {
         }
         //Get Building list in db when db exists
         bBuildingList = bDBHelper.getListBuilding();
-        userBuildingList = bDBHelper.getListBuilding2();
+        savedBuildingList = bDBHelper.getListBuilding2();
         //Init adapter
         adapter = new ArrayAdapter<Building>(this,android.R.layout.simple_list_item_1, bBuildingList);
         //Set adapter for listview
         lvBuilding.setAdapter(adapter);
 
-        adapter2 = new ArrayAdapter<Building>(this,android.R.layout.simple_list_item_1, userBuildingList);
+        adapter2 = new ArrayAdapter<Building>(this,android.R.layout.simple_list_item_1, savedBuildingList);
         //Set adapter for listview
-        lvBuilding2.setAdapter(adapter2);
+        lvBuildingSaved.setAdapter(adapter2);
 
         lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Uri gmmIntentUri = Uri.parse("google.navigation:q="+bBuildingList.get(position).getBuilding_Lat()+", "+bBuildingList.get(position).getBuilding_Lng()+"&mode=walking");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
-
-
-                //Toast.makeText(getBaseContext(), bBuildingList.get(position).getSaved(),Toast.LENGTH_SHORT).show();
+                passToMap(((TextView) view).getText().toString());
             }
         });
+
+        lvBuildingSaved.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                passToMap(((TextView) view).getText().toString());
+            }
+        });
+
 
         lvBuilding.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Building building2 = new Building(bBuildingList.get(position).getId(), bBuildingList.get(position).getBuilding_name(), bBuildingList.get(position).getBuilding_abbv(), bBuildingList.get(position).getBuilding_address(), bBuildingList.get(position).getBuilding_Lat(), bBuildingList.get(position).getBuilding_Lng(), bBuildingList.get(position).getSaved());
-                userBuildingList.add(building2);
-
-                SQLiteDatabase db = bDBHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("SAVE","YES");
-
-                db.update("Building",values,"NAME= ?",new String[]{building2.getBuilding_name()});
-
-                 Toast.makeText(getBaseContext(), building2.getBuilding_name()+" has been added to saved list",Toast.LENGTH_SHORT).show();
+                saveAddRemove(((TextView) view).getText().toString(),true);
             return true;
             }
         });
 
-
-
-        lvBuilding2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                /*Uri gmmIntentUri = Uri.parse("google.navigation:q="+userBuildingList.get(position).getBuilding_Lat()+", "+userBuildingList.get(position).getBuilding_Lng()+"&mode=walking");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
-                */
-                String[] thisbuildinginfo = ((TextView) view).getText().toString().split("\n");
-                //Building thisbuilding = bDBHelper.getBuildingbyName(thisbuildinginfo[0]);
-                //Toast.makeText(getApplicationContext(), thisbuilding.getBuilding_name(), Toast.LENGTH_SHORT).show();
-                Intent mapIntent = new Intent(MainActivity.this, MapsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("BldName", thisbuildinginfo[0]);
-                mapIntent.putExtras(bundle);
-                startActivity(mapIntent);
-
-                //Toast.makeText(getBaseContext(), bBuildingList.get(position).getSaved(),Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        lvBuilding2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+        lvBuildingSaved.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Building building2 = new Building(userBuildingList.get(position).getId(), userBuildingList.get(position).getBuilding_name(), userBuildingList.get(position).getBuilding_abbv(), userBuildingList.get(position).getBuilding_address(), userBuildingList.get(position).getBuilding_Lat(), userBuildingList.get(position).getBuilding_Lng(), userBuildingList.get(position).getSaved());
-                //userBuildingList.remove(position);
-                Toast.makeText(getBaseContext(), building2.getBuilding_name()+" has been removed to saved list",Toast.LENGTH_SHORT).show();
-
-                //UPDATE `Building` SET `SAVE`=? WHERE `_rowid_`='1';
-
-                SQLiteDatabase db = bDBHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("SAVE","NULL");
-
-                db.update("Building",values,"NAME= ?",new String[]{building2.getBuilding_name()});
-                //db.update("Building",values,"NAME= ?",new String[]{building2.getBuilding_name()});
-
+                saveAddRemove(((TextView) view).getText().toString(),false);
+                updateSavedList();
                 return true;
             }
         });
@@ -156,21 +111,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                userBuildingList = bDBHelper.getListBuilding2();
-                adapter2 = new ArrayAdapter<Building>(getBaseContext(),android.R.layout.simple_list_item_1, userBuildingList);
-                lvBuilding2.setAdapter(adapter2);
+                updateSavedList();
+                sv.setQuery("", false);
+                sv.clearFocus();
 
-                if (lvBuilding2.getVisibility() == View.VISIBLE)
+
+                if (lvBuildingSaved.getVisibility() == View.VISIBLE)
                 {
                     btn.setText("Saved");
-                    lvBuilding2.setVisibility(View.INVISIBLE);
+                    lvBuildingSaved.setVisibility(View.INVISIBLE);
                     lvBuilding.setVisibility(View.VISIBLE);
 
                 }
                 else
                 {
                     btn.setText("All");
-                    lvBuilding2.setVisibility(View.VISIBLE);
+                    lvBuildingSaved.setVisibility(View.VISIBLE);
                     lvBuilding.setVisibility(View.INVISIBLE);
                 }
             }
@@ -185,12 +141,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+                adapter2.getFilter().filter(newText);
                 return false;
             }
         });
 
     }
-
 
     private boolean copyDatabase(Context context) {
         try {
@@ -211,4 +167,44 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
+
+    private void passToMap(String bldinfo) {
+        String bldname = bldinfo.substring(0, bldinfo.indexOf("\n"));
+        Intent mapIntent = new Intent(MainActivity.this, MapsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("BldName", bldname);
+        mapIntent.putExtras(bundle);
+        startActivity(mapIntent);
+    }
+
+    private void saveAddRemove(String bldinfo, boolean saveYN) {
+        String bldname = bldinfo.substring(0, bldinfo.indexOf("\n"));
+        String addremove = null;
+
+        Building Savebuilding = bDBHelper.getBuildingbyName(bldname);
+        savedBuildingList.add(Savebuilding);
+
+        SQLiteDatabase db = bDBHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        if (saveYN)
+        {
+            values.put("SAVE","YES");
+            addremove = "added to";
+        }else {
+            values.put("SAVE","NULL");
+            addremove = "removed from";
+        }
+
+        db.update("Building",values,"NAME= ?",new String[]{Savebuilding.getBuilding_name()});
+
+        Toast.makeText(getBaseContext(), bldname+" has been "+addremove+" saved list",Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateSavedList() {
+        savedBuildingList = bDBHelper.getListBuilding2();
+        adapter2 = new ArrayAdapter<Building>(getBaseContext(),android.R.layout.simple_list_item_1, savedBuildingList);
+        lvBuildingSaved.setAdapter(adapter2);
+    }
+
 }

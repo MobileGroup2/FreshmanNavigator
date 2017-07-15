@@ -48,20 +48,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Check if GPS is enabled
         LocationManager mlocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        boolean enabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-        if(!enabled) {
+        if(!mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             showDialogGPS();
         }
 
+        //Create database helper
         bDBHelper = new DatabaseHelper(this);
 
+        //Pull building name from bundle and query the Database for building details
         if(getIntent()!= null && getIntent().getExtras() != null) {
             Intent args = getIntent();
             Bundle bundle = args.getExtras();
             String name = bundle.getString("BldName");
+
             building_details = bDBHelper.getBuildingbyName(name);
-            Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -90,17 +92,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Double.parseDouble(building_details.getBuilding_Lng()));
         mMap.addMarker(new MarkerOptions().position(toGo).title(building_details.getBuilding_name()));
     }
+    else {
+        //Add markers from Saved List
+        userBuildingList = bDBHelper.getListBuilding2();
+        LatLng toGo;
 
-       // userBuildingList = bDBHelper.getListBuilding2();
-/*
-        if (userBuildingList.size()>0)
-        {
-            for (int i = 0; i<userBuildingList.size();i++)
-            {
-                // mMap.addMarker();
-            }
+        for (int i = 0; i < userBuildingList.size(); i++) {
+            toGo = new LatLng(Double.parseDouble(userBuildingList.get(i).getBuilding_Lat()),
+                    Double.parseDouble(userBuildingList.get(i).getBuilding_Lng()));
+             mMap.addMarker(new MarkerOptions().position(toGo).title(userBuildingList.get(i).getBuilding_name()));
+           // Toast.makeText(getBaseContext(),userBuildingList.get(i).getBuilding_name(),Toast.LENGTH_SHORT).show();
         }
-*/
+
+    }
 
        // mMap.addMarker(new MarkerOptions().position(fsu).title("FSU"));
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(fsu));
