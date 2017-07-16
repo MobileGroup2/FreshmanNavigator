@@ -13,12 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import francefrancerevolution.gonolesdatabase.model.AddClass;
 
 
-public class Schedule extends FragmentActivity {
+public class Schedule extends AppCompatActivity {
 
     private Button addClasses;
     private TextView schedule;
@@ -33,31 +31,35 @@ public class Schedule extends FragmentActivity {
         addClasses = (Button)findViewById(R.id.button_add_classes);
         schedule = (TextView)findViewById(R.id.text_schedule);
 //        Long row = null;
-//        Intent intent = getIntent();
-//        if(intent != null) {
-//            String str = intent.getStringExtra("URI");
-//            Log.i("  HERE   ", str);
-//            Uri uri = Uri.parse(str);
-//            row = ContentUris.parseId(uri);
-//        }
-        Toast.makeText(this, "IM HERE", Toast.LENGTH_LONG).show();
-        String selectionClause = "_ID = ?";
-        //String selectionArgs[] = {Long.toString(row)};
-        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, null, null, null);
+        long row=0;
+        Intent intent = this.getIntent();
+        if(intent != null){
 
-        if(cursor != null){
-            Log.i("C IS! EQUAL TO NULL", "");
+            String str = intent.getStringExtra("URI");
+            Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+           // row = ContentUris.parseId(AddClass.uri);
+        }
+
+
+
+        String selectionClause = "_ID = ?";
+       // String selectionArgs[] = {Long.toString(row)};
+        String selectionArgs[] = new String[]{"1"};
+        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs, null);
+
+       if(cursor != null){
+           // Log.i("C IS! EQUAL TO NULL", "");
             while(cursor.moveToNext()){
                 //Log.i("\n\n", "\n");
                 //Log.i(cursor.getString(0), cursor.getString(1));
                 //Log.i(cursor.getString(2), "");
-                schedule.setText(cursor.getString(0));
-                schedule.setText("Anjali");
+                schedule.setText(cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
+                //schedule.setText("Anjali");
                 Log.i("BLABIDDY BLAH", "BLAH BLAH");
             }
         }
-        else
-            Log.i("CURSOR IS EQUAL TO NULL", "");
+//        else
+//           Log.i("CURSOR IS EQUAL TO NULL", "");
 
     }
 

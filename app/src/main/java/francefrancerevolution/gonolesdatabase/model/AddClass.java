@@ -27,6 +27,7 @@ public class AddClass extends AppCompatActivity
     private Button add;
     private EditText editClass, editTime, editBuilding;
     public static String ID = "UniqueID";
+    public static Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +74,17 @@ public class AddClass extends AppCompatActivity
             building = editBuilding.getText().toString();
             time = editTime.getText().toString();
             _class = editClass.getText().toString();
-            //Log.i(building, time);
-            //Log.i("   HERE   ", _class);
+            //info entered is gotten properly
+
             ContentValues values = new ContentValues();
             values.put(UserContentProvider.NAME, _class);
             values.put(UserContentProvider.BUILDING, building);
             values.put(UserContentProvider.TIME, time);
-            Uri uri = getContentResolver().insert(UserContentProvider.CONTENT_URI, values);
-            //Log.i(uri.toString(), values.toString());
+            uri = getContentResolver().insert(UserContentProvider.CONTENT_URI, values);
+            Log.i(uri.toString(), values.toString());
             Intent intent = new Intent(AddClass.this, Schedule.class);
             intent.putExtra("URI", uri.toString());
-            startActivity(intent);
+            startActivityForResult(intent,0);
         }
     };
 
