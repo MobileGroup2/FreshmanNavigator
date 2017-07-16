@@ -133,8 +133,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             showDialogGo(arg0);
                             dialogClicked = !dialogClicked;
                         }
-
-                        //Toast.makeText(getApplicationContext(),arg0.getTitle().toString(),Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(getApplicationContext(),arg0.getTitle().toString(),Toast.LENGTH_LONG).show();
                         return true;
                     }
                 });
