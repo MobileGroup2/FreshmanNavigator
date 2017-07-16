@@ -23,6 +23,7 @@ public class AddClass extends AppCompatActivity
 {
     private Button add;
     private EditText editClass, editTime, editBuilding;
+    public static String ID = "UniqueID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class AddClass extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (AddClass.this, MainActivity.class);
+                intent.putExtra(ID,"from add class");
                 startActivity(intent);
             }
         });

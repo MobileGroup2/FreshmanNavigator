@@ -68,7 +68,6 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="e.g. 930AM-1045AM"
-        android:inputType="time"
         android:typeface="monospace" />
 
     <Button

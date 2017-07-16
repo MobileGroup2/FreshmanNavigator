@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
+
 
 public class MainActivity extends AppCompatActivity {
     private ListView lvBuilding, lvBuildingSaved;
@@ -73,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
         adapter2 = new ArrayAdapter<Building>(this,android.R.layout.simple_list_item_1, savedBuildingList);
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
+
+        Intent intent = this.getIntent();
+        if (intent!=null)
+        {
+            String data = intent.getExtras().getString(ID);
+            if(data.equals("from add class"))
+            {
+                Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+
+            }
+        }
 
         lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
