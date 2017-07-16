@@ -1,7 +1,6 @@
 
 package francefrancerevolution.gonolesdatabase.model;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import francefrancerevolution.gonolesdatabase.MainActivity;
 import francefrancerevolution.gonolesdatabase.MapsActivity;
 import francefrancerevolution.gonolesdatabase.R;
 import francefrancerevolution.gonolesdatabase.Schedule;
+
 
 public class HomeScreen extends AppCompatActivity {
 
