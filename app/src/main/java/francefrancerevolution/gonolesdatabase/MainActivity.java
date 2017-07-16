@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
 
+
         Intent intent = this.getIntent();
         if (intent!=null)
         {
