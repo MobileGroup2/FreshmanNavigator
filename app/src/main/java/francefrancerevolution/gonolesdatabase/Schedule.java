@@ -48,18 +48,11 @@ public class Schedule extends AppCompatActivity {
         Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs, null);
 
        if(cursor != null){
-           // Log.i("C IS! EQUAL TO NULL", "");
             while(cursor.moveToNext()){
-                //Log.i("\n\n", "\n");
-                //Log.i(cursor.getString(0), cursor.getString(1));
-                //Log.i(cursor.getString(2), "");
                 schedule.setText(cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
-                //schedule.setText("Anjali");
-                Log.i("BLABIDDY BLAH", "BLAH BLAH");
             }
         }
-//        else
-//           Log.i("CURSOR IS EQUAL TO NULL", "");
+
 
     }
 
