@@ -29,30 +29,13 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule);
-        addClasses = (Button)findViewById(R.id.button_add_classes);
-        schedule = (ListView)findViewById(R.id.class_view);
+        addClasses = (Button) findViewById(R.id.button_add_classes);
+        schedule = (ListView) findViewById(R.id.class_view);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classList);
-
-        Intent intent = this.getIntent();
-        if(intent != null){
-            String str = intent.getStringExtra("URI");
-            Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-
-        }
-
-
-
         schedule = (ListView)findViewById(R.id.class_view);
         classList = new ArrayList<String>();
 
-
-
-
-
-
-
         Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, null, null, null);
-
 
         if(cursor != null){
             while(cursor.moveToNext()){
@@ -60,11 +43,8 @@ public class Schedule extends AppCompatActivity {
             }
         }
 
-
-
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classList);
         schedule.setAdapter(adapter);
-
 
     }
 
@@ -73,13 +53,8 @@ public class Schedule extends AppCompatActivity {
         String str = null;
         ArrayList<String> classList = new ArrayList<>();
 
-
-
-
         return classList;
     }
-
-
 
 
     public void classClick(View v)
@@ -90,7 +65,6 @@ public class Schedule extends AppCompatActivity {
 
         //finish();
     }
-
 
 }
 
