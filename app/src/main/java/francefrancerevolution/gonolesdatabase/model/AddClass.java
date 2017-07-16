@@ -53,6 +53,8 @@ public class AddClass extends AppCompatActivity
 
         });
 
+        //THIS WILL GET THE NAME FROM THE BUILDING LIST AND CHANGE THE EDIT TEXT WITH THE BUILDING NAME.
+
         Intent intent = this.getIntent();
         if(intent!=null)
         {

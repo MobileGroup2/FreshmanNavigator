@@ -24,14 +24,13 @@
         android:text="ADD CLASSES"
         android:typeface="monospace"/>
 
-    <TextView
-        android:id="@+id/text_schedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+    <ListView
+        android:id="@+id/class_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_add_classes"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/text_view2"
-        android:layout_marginTop="23dp"
-        android:text="TextView" />
+        android:layout_marginTop="18dp" />
 
 </RelativeLayout>

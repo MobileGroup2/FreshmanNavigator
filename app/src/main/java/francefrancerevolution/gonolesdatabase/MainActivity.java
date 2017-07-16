@@ -31,7 +31,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import static android.R.attr.name;
 import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
 import static francefrancerevolution.gonolesdatabase.model.AddClass.bName;
 
@@ -80,18 +79,54 @@ public class MainActivity extends AppCompatActivity {
         lvBuildingSaved.setAdapter(adapter2);
 
 
-        final Intent intent = getIntent();
-        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-              if (intent.getExtras().getString(ID).equals("from add class")) {
-                  addToClass(((TextView) view).getText().toString());
-              }else{
-                  passToMap(((TextView) view).getText().toString());
-              }
+
+        Intent intent = getIntent();
+        if(intent!=null)
+        {
+            String data = intent.getExtras().getString(ID);
+            if(data.equals("from add class"))
+            {
+                //Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //Toast.makeText(getApplicationContext(),"inside of onclick listener yay",Toast.LENGTH_SHORT).show();
+                        String name = (((TextView) view).getText().toString());
+                        Intent intent = new Intent(MainActivity.this, AddClass.class);
+                        intent.putExtra(bName,name);
+                        startActivity(intent);
+                    }
+                });
+
+
             }
-        });
+            else
+            {
+                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        passToMap(((TextView) view).getText().toString());
+                    }
+                });
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+//        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                passToMap(((TextView) view).getText().toString());
+//            }
+//        });
 
         lvBuildingSaved.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -217,14 +252,6 @@ public class MainActivity extends AppCompatActivity {
         savedBuildingList = bDBHelper.getListBuilding2();
         adapter2 = new ArrayAdapter<Building>(getBaseContext(),android.R.layout.simple_list_item_1, savedBuildingList);
         lvBuildingSaved.setAdapter(adapter2);
-    }
-
-    private void addToClass(String bldinfo)
-    {
-        String bldname = bldinfo.substring(0, bldinfo.indexOf("\n"));
-        Intent intent = new Intent(MainActivity.this, AddClass.class);
-        intent.putExtra(bName, bldname);
-        startActivity(intent);
     }
 
 }
