@@ -39,10 +39,14 @@ public class Schedule extends AppCompatActivity {
             Toast.makeText(this, str, Toast.LENGTH_LONG).show();
 
         }
-        // adapter.add("THIS IS ADDED");
-//        schedule.setAdapter(adapter);
-//        classList.add("New Item");
-//        adapter.notifyDataSetChanged();
+
+
+
+        schedule = (ListView)findViewById(R.id.class_view);
+        classList = new ArrayList<String>();
+
+
+
 
 
 
@@ -61,10 +65,17 @@ public class Schedule extends AppCompatActivity {
 
         if(cursor != null){
             while(cursor.moveToNext()){
-                Toast.makeText(this, cursor.getString(1) + " " + cursor.getString(2), Toast.LENGTH_LONG).show();
-
+                classList.add("Class: " + cursor.getString(1) + "\n" +"Building: " + cursor.getString(2) + "\n" + "Time: " + cursor.getString(3));
+               // classList.add("Class: " + cursor2.getString(1) + "\n" +"Building: " + cursor2.getString(2) + "\n" + "Time: " + cursor2.getString(3));
+                //classList.add("Class: " + cursor3.getString(1) + "\n" +"Building: " + cursor3.getString(2) + "\n" + "Time: " + cursor3.getString(3));
+                //classList.add("Class: " + cursor4.getString(1) + "\n" +"Building: " + cursor4.getString(2) + "\n" + "Time: " + cursor4.getString(3));
+                //classList.add("Class: " + cursor5.getString(1) + "\n" +"Building: " + cursor5.getString(2) + "\n" + "Time: " + cursor5.getString(3));
             }
         }
+
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classList);
+        schedule.setAdapter(adapter);
 
 
     }
