@@ -8,9 +8,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
-import francefrancerevolution.gonolesdatabase.model.AddClass;
 import francefrancerevolution.gonolesdatabase.model.Building;
 
 import java.io.File;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Building> bBuildingList;
     private ArrayList<Building> savedBuildingList= new ArrayList<>();
     private DatabaseHelper bDBHelper;
-    public static String bName= "i";
     SearchView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,29 +76,34 @@ public class MainActivity extends AppCompatActivity {
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
 
-
-        Intent intent = this.getIntent();
+     /*   Intent intent = this.getIntent();
         if (intent!=null)
         {
             String data = intent.getExtras().getString(ID);
             if(data.equals("from add class"))
             {
-                //Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
-                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String buildingName = ((TextView) view).getText().toString();
-                        Intent name = new Intent(MainActivity.this,AddClass.class);
-                        name.putExtra(bName,buildingName);
-                        startActivity(name);
-
-                    }
-                });
+                Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
 
             }
+        }*/
+
+        if(getIntent()!= null && getIntent().getExtras() != null) {
+            String ID = "Whateverthebundleidis";
+            Intent args = getIntent();
+            Bundle bundle = args.getExtras();
+            String data = bundle.getString(ID);
+
+            //Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
         }
 
 
+
+        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                passToMap(((TextView) view).getText().toString());
+            }
+        });
 
         lvBuildingSaved.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

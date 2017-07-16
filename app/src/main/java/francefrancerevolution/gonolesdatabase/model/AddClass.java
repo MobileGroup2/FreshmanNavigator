@@ -15,7 +15,7 @@ import francefrancerevolution.gonolesdatabase.R;
 import francefrancerevolution.gonolesdatabase.Schedule;
 import francefrancerevolution.gonolesdatabase.UserContentProvider;
 
-import static francefrancerevolution.gonolesdatabase.MainActivity.bName;
+//import static francefrancerevolution.gonolesdatabase.MainActivity.bName;
 
 
 /**
@@ -48,12 +48,13 @@ public class AddClass extends AppCompatActivity
             }
 
         });
+       /*
         Intent intent = this.getIntent();
         if(intent!=null)
         {
             String name = intent.getStringExtra(bName);
             editBuilding.setText(bName);
-        }
+        }*/
 
         editClass = (EditText)findViewById(R.id.edit_text_class);
         editTime = (EditText) findViewById(R.id.edit_text_time);
