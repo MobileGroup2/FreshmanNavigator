@@ -124,10 +124,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                updateSavedList();
+                //Clear the Query
                 sv.setQuery("", false);
                 sv.clearFocus();
-
+                updateSavedList();
 
                 if (lvBuildingSaved.getVisibility() == View.VISIBLE)
                 {
