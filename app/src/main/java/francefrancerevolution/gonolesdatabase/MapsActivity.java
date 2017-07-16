@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLngBounds FSU;
     private Building building_details;
     private DatabaseHelper bDBHelper;
+    private boolean dialogClicked = false;
 
 
     @Override
@@ -128,7 +129,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public boolean
                     onMarkerClick(final Marker arg0) {
-                        showDialogGo(arg0);
+                        if(!dialogClicked){
+                            showDialogGo(arg0);
+                            dialogClicked = !dialogClicked;
+                        }
 
                         //Toast.makeText(getApplicationContext(),arg0.getTitle().toString(),Toast.LENGTH_LONG).show();
                         return true;
