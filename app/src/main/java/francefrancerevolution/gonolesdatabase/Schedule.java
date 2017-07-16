@@ -66,7 +66,7 @@ public class Schedule extends AppCompatActivity {
         if(cursor != null){
             while(cursor.moveToNext()){
                 classList.add("Class: " + cursor.getString(1) + "\n" +"Building: " + cursor.getString(2) + "\n" + "Time: " + cursor.getString(3));
-                classList.add("Class: " + cursor2.getString(1) + "\n" +"Building: " + cursor2.getString(2) + "\n" + "Time: " + cursor2.getString(3));
+               // classList.add("Class: " + cursor2.getString(1) + "\n" +"Building: " + cursor2.getString(2) + "\n" + "Time: " + cursor2.getString(3));
                 //classList.add("Class: " + cursor3.getString(1) + "\n" +"Building: " + cursor3.getString(2) + "\n" + "Time: " + cursor3.getString(3));
                 //classList.add("Class: " + cursor4.getString(1) + "\n" +"Building: " + cursor4.getString(2) + "\n" + "Time: " + cursor4.getString(3));
                 //classList.add("Class: " + cursor5.getString(1) + "\n" +"Building: " + cursor5.getString(2) + "\n" + "Time: " + cursor5.getString(3));
