@@ -76,15 +76,27 @@ public class MainActivity extends AppCompatActivity {
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
 
-        Intent intent = this.getIntent();
+       /* Intent intent = this.getIntent();
         if (intent!=null)
         {
+        //See If statement directly below//
             String data = intent.getExtras().getString(ID);
             if(data.equals("from add class"))
             {
                 Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
 
             }
+        }*/
+
+        if(getIntent()!= null && getIntent().getExtras() != null) {
+            Intent args = getIntent();
+            Bundle bundle = args.getExtras(); //In AddClass, put bundle with info into intent
+
+            String bundleID = "Whateveryouwant"; //This should be in String xml for AddClass and MainActivity to use
+            String data = bundle.getString(bundleID);
+
+
+            //Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
         }
 
         lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
