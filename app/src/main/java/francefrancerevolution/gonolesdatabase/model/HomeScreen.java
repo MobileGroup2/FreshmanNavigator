@@ -11,6 +11,8 @@ import francefrancerevolution.gonolesdatabase.MapsActivity;
 import francefrancerevolution.gonolesdatabase.R;
 import francefrancerevolution.gonolesdatabase.Schedule;
 
+import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
+
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -61,6 +63,7 @@ public class HomeScreen extends AppCompatActivity {
     public void buildingClick(View v)
     {
         Intent intent = new Intent(HomeScreen.this, MainActivity.class);
+        intent.putExtra(ID,"from building class");
         startActivity(intent);
     }
 

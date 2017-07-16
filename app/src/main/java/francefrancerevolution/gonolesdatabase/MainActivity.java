@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
+import francefrancerevolution.gonolesdatabase.model.AddClass;
 import francefrancerevolution.gonolesdatabase.model.Building;
 
 import java.io.File;
@@ -31,6 +32,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
+import static francefrancerevolution.gonolesdatabase.model.AddClass.bName;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -76,34 +78,55 @@ public class MainActivity extends AppCompatActivity {
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
 
-     /*   Intent intent = this.getIntent();
-        if (intent!=null)
+
+
+
+        Intent intent = getIntent();
+        if(intent!=null)
         {
             String data = intent.getExtras().getString(ID);
             if(data.equals("from add class"))
             {
-                Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //Toast.makeText(getApplicationContext(),"inside of onclick listener yay",Toast.LENGTH_SHORT).show();
+                        String name = (((TextView) view).getText().toString());
+                        Intent intent = new Intent(MainActivity.this, AddClass.class);
+                        intent.putExtra(bName,name);
+                        startActivity(intent);
+                    }
+                });
+
 
             }
-        }*/
-
-        if(getIntent()!= null && getIntent().getExtras() != null) {
-            String ID = "Whateverthebundleidis";
-            Intent args = getIntent();
-            Bundle bundle = args.getExtras();
-            String data = bundle.getString(ID);
-
-            //Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
+            else
+            {
+                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        passToMap(((TextView) view).getText().toString());
+                    }
+                });
+            }
         }
 
 
 
-        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                passToMap(((TextView) view).getText().toString());
-            }
-        });
+
+
+
+
+
+
+
+//        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                passToMap(((TextView) view).getText().toString());
+//            }
+//        });
 
         lvBuildingSaved.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

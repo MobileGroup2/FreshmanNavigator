@@ -28,6 +28,7 @@ public class AddClass extends AppCompatActivity
     private EditText editClass, editTime, editBuilding;
     public static String ID = "UniqueID";
     public static Uri uri;
+    public static String bName = "name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +42,23 @@ public class AddClass extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (AddClass.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(ID,"from add class");
+                intent.putExtras(bundle);
                 //put other extras to save user class name and time.
-                intent.putExtra(ID,"from add class");
-                startActivityForResult(intent,0);
+                //intent.putExtra(ID,"from add class");
+                startActivity(intent);
                 //finish();
             }
 
         });
-       /*
+
         Intent intent = this.getIntent();
         if(intent!=null)
         {
             String name = intent.getStringExtra(bName);
-            editBuilding.setText(bName);
-        }*/
+            editBuilding.setText(name);
+        }
 
         editClass = (EditText)findViewById(R.id.edit_text_class);
         editTime = (EditText) findViewById(R.id.edit_text_time);

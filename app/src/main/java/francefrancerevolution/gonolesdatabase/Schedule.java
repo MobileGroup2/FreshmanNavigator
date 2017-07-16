@@ -37,7 +37,7 @@ public class Schedule extends AppCompatActivity {
 
             String str = intent.getStringExtra("URI");
             Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-           // row = ContentUris.parseId(AddClass.uri);
+
         }
 
 
