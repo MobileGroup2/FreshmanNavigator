@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         //Set adapter for listview
         lvBuildingSaved.setAdapter(adapter2);
 
-        Intent intent = this.getIntent();
+     /*   Intent intent = this.getIntent();
         if (intent!=null)
         {
             String data = intent.getExtras().getString(ID);
@@ -85,7 +85,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
 
             }
+        }*/
+
+        if(getIntent()!= null && getIntent().getExtras() != null) {
+            String ID = "Whateverthebundleidis";
+            Intent args = getIntent();
+            Bundle bundle = args.getExtras();
+            String data = bundle.getString(ID);
+
+            //Toast.makeText(getBaseContext(), bundle.getString("BldName"), Toast.LENGTH_SHORT).show();
         }
+
+
 
         lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
