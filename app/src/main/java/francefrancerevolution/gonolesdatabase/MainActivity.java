@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import francefrancerevolution.gonolesdatabase.database.DatabaseHelper;
+import francefrancerevolution.gonolesdatabase.model.AddClass;
 import francefrancerevolution.gonolesdatabase.model.Building;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Building> bBuildingList;
     private ArrayList<Building> savedBuildingList= new ArrayList<>();
     private DatabaseHelper bDBHelper;
+    public static String bName= "i";
     SearchView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,17 +84,22 @@ public class MainActivity extends AppCompatActivity {
             String data = intent.getExtras().getString(ID);
             if(data.equals("from add class"))
             {
-                Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"CAME FROM THE ADDCLASS JAVA FILE",Toast.LENGTH_LONG).show();
+                lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String buildingName = ((TextView) view).getText().toString();
+                        Intent name = new Intent(MainActivity.this,AddClass.class);
+                        name.putExtra(bName,buildingName);
+                        startActivity(name);
+
+                    }
+                });
 
             }
         }
 
-        lvBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                passToMap(((TextView) view).getText().toString());
-            }
-        });
+
 
         lvBuildingSaved.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override

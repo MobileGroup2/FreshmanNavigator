@@ -15,6 +15,9 @@ import francefrancerevolution.gonolesdatabase.R;
 import francefrancerevolution.gonolesdatabase.Schedule;
 import francefrancerevolution.gonolesdatabase.UserContentProvider;
 
+import static francefrancerevolution.gonolesdatabase.MainActivity.bName;
+
+
 /**
  * Created by sap15e on 7/13/2017.
  */
@@ -37,10 +40,19 @@ public class AddClass extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (AddClass.this, MainActivity.class);
+                //put other extras to save user class name and time.
                 intent.putExtra(ID,"from add class");
-                startActivity(intent);
+                startActivityForResult(intent,0);
+                //finish();
             }
+
         });
+        Intent intent = this.getIntent();
+        if(intent!=null)
+        {
+            String name = intent.getStringExtra(bName);
+            editBuilding.setText(bName);
+        }
 
         editClass = (EditText)findViewById(R.id.edit_text_class);
         editTime = (EditText) findViewById(R.id.edit_text_time);
