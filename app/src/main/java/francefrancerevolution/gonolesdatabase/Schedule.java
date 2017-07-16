@@ -51,27 +51,15 @@ public class Schedule extends AppCompatActivity {
 
 
 
-        String selectionClause = "_ID = ?";
-        String selectionArgs[] = {"1"};
-        String selectionArgs2[] = {"2"};
-        String selectionArgs3[] = {"3"};
-        String selectionArgs4[] = {"4"};
-        String selectionArgs5[] = {"5"};
-        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs, null);
-        Cursor cursor2 = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs2, null);
-        Cursor cursor3 = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs3, null);
-        Cursor cursor4 = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs4, null);
-        Cursor cursor5 = getContentResolver().query(UserContentProvider.CONTENT_URI, null, selectionClause, selectionArgs5, null);
+        Cursor cursor = getContentResolver().query(UserContentProvider.CONTENT_URI, null, null, null, null);
+
 
         if(cursor != null){
             while(cursor.moveToNext()){
                 classList.add("Class: " + cursor.getString(1) + "\n" +"Building: " + cursor.getString(2) + "\n" + "Time: " + cursor.getString(3));
-               // classList.add("Class: " + cursor2.getString(1) + "\n" +"Building: " + cursor2.getString(2) + "\n" + "Time: " + cursor2.getString(3));
-                //classList.add("Class: " + cursor3.getString(1) + "\n" +"Building: " + cursor3.getString(2) + "\n" + "Time: " + cursor3.getString(3));
-                //classList.add("Class: " + cursor4.getString(1) + "\n" +"Building: " + cursor4.getString(2) + "\n" + "Time: " + cursor4.getString(3));
-                //classList.add("Class: " + cursor5.getString(1) + "\n" +"Building: " + cursor5.getString(2) + "\n" + "Time: " + cursor5.getString(3));
             }
         }
+
 
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classList);
