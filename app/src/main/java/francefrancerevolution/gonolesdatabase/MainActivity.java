@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        //THIS WILL CHANGE THE ONCLICK LISTENER BASED ON WHERE WE ARE OULLING UP THE BUILDING LIST.
         Intent intent = getIntent();
         if(intent!=null)
         {
