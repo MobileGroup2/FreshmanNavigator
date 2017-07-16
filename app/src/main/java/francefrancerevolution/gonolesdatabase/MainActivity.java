@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (intent.getExtras().getString(ID).equals("from add class")) {
                     addToClass(((TextView) view).getText().toString());
+                    saveAddRemove(((TextView) view).getText().toString(),true);
                 }else{
                     passToMap(((TextView) view).getText().toString());
                 }
@@ -106,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 saveAddRemove(((TextView) view).getText().toString(),true);
+                Toast.makeText(getBaseContext(),"Building has been added!",Toast.LENGTH_SHORT).show();
+
             return true;
             }
         });
@@ -211,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
         db.update("Building",values,"NAME= ?",new String[]{Savebuilding.getBuilding_name()});
 
-        Toast.makeText(getBaseContext(), bldname+" has been "+addremove+" saved list",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), bldname+" has been "+addremove+" saved list",Toast.LENGTH_SHORT).show();
     }
 
     private void updateSavedList() {
