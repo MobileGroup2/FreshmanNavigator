@@ -31,7 +31,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import static francefrancerevolution.gonolesdatabase.model.AddClass.CLASS;
 import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
+import static francefrancerevolution.gonolesdatabase.model.AddClass.TIME;
 import static francefrancerevolution.gonolesdatabase.model.AddClass.bName;
 
 
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (intent.getExtras().getString(ID).equals("from add class")) {
-                    addToClass(((TextView) view).getText().toString());
+                    addToClass(((TextView) view).getText().toString(),intent.getExtras().getString(CLASS),intent.getExtras().getString(TIME));
                     saveAddRemove(((TextView) view).getText().toString(),true);
                 }else{
                     passToMap(((TextView) view).getText().toString());
@@ -214,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
         db.update("Building",values,"NAME= ?",new String[]{Savebuilding.getBuilding_name()});
 
-        //Toast.makeText(getBaseContext(), bldname+" has been "+addremove+" saved list",Toast.LENGTH_SHORT).show();
     }
 
     private void updateSavedList() {
@@ -223,11 +224,13 @@ public class MainActivity extends AppCompatActivity {
         lvBuildingSaved.setAdapter(adapter2);
     }
 
-    private void addToClass(String bldinfo)
+    private void addToClass(String bldinfo,String className,String time)
     {
         String bldname = bldinfo.substring(0, bldinfo.indexOf("\n"));
         Intent intent = new Intent(MainActivity.this, AddClass.class);
         intent.putExtra(bName, bldname);
+        intent.putExtra(CLASS,className);
+        intent.putExtra(TIME,time);
         startActivity(intent);
     }
 

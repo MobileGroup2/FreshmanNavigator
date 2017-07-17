@@ -82,7 +82,6 @@ public class Schedule extends AppCompatActivity {
     public void classClick(View v)
     {
         Intent intent = new Intent(Schedule.this, AddClass.class);
-
         startActivity(intent);
 
         //finish();
