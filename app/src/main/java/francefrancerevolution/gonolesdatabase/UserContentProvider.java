@@ -1,3 +1,20 @@
+/**********************************************
+ Group Sensors Project
+ FSU - Mobile Programming
+ FreshmanNavigator App
+
+ Description:
+ Allows students of FSU to keep a schedule of their
+ classes, and then view where each class is on
+ a google maps api.
+
+ Authors@
+ Alex Quesenberry
+ Alex Comes
+ Sree Paruchuri
+ Midlenex Joseph
+ Andrew Dang
+ ***********************************************/
 package francefrancerevolution.gonolesdatabase;
 
 import android.content.ContentProvider;
@@ -7,10 +24,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
-
-import java.util.ArrayList;
-
-import francefrancerevolution.gonolesdatabase.model.Building;
 
 /**
  * Created by alex on 7/13/2017.
