@@ -55,12 +55,12 @@
 
         <activity
             android:name=".model.AddClass"
-            android:label="add_class">
+            android:label="Add Class">
         </activity>
 
         <activity
             android:name=".Schedule"
-            android:label="schedule">
+            android:label="Schedule">
 
         </activity>
 
