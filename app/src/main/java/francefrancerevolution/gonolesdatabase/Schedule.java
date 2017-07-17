@@ -6,15 +6,20 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import francefrancerevolution.gonolesdatabase.model.AddClass;
+import francefrancerevolution.gonolesdatabase.model.HomeScreen;
+
+import static francefrancerevolution.gonolesdatabase.model.AddClass.ID;
 
 
 public class Schedule extends AppCompatActivity {
@@ -46,8 +51,25 @@ public class Schedule extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classList);
         schedule.setAdapter(adapter);
 
+        schedule.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = ((TextView) view).getText().toString();
+                name = name.substring(0, name.indexOf("\n"));
+                name = name.replace("Class: ", "");
+                getContentResolver().delete(UserContentProvider.CONTENT_URI, "Name = ?", new String[]{name});
+                Toast.makeText(getBaseContext(),name + " removed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
     }
+    @Override
+    public void onBackPressed() {
 
+        Intent setIntent = new Intent(Schedule.this, HomeScreen.class);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(setIntent);
+    }
 
     public ArrayList<String> getClassList(){
         String str = null;
